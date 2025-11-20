@@ -7,6 +7,8 @@ class Player
     public readonly string $id;
     public readonly string $name;
     public Deck $deck;
+    public Hand $hand;
+
     public ?Card $current_card = null;
     public function __construct(string $id, string $name, Deck $deck)
     {

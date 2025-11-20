@@ -49,6 +49,7 @@ class Deck_factory
             act: random_int(60, 99)
         );
     }
+
     /**
      * Teilt ein Deck in zwei gleiche Hälften
      */
@@ -67,20 +68,57 @@ class Deck_factory
     }
 
     /**
-     * Erstellt ein komplettes Test-Setup mit 2 Spielern
+     * Erstellt ein komplettes Test-Setup mit 2 Spielern, basierend auf einem
+     * geteilten Gesamtdeck.
+     * * @return array<int, Player>
+     */
+    public static function create_test_setup(
+        string $player1_name,
+        string $player2_name,
+        int $deck_size = 20
+    ): array
+    {
+        $full_deck = self::create_random_deck($deck_size);
+        $full_deck->shuffle();
+
+        [$deck1, $deck2] = self::split_deck($full_deck);
+
+        $player1 = new Player(
+            id: 'P1-' . uniqid(),
+            name: $player1_name,
+            deck: $deck1
+        );
+
+        $player2 = new Player(
+            id: 'P2-' . uniqid(),
+            name: $player2_name,
+            deck: $deck2
+        );
+
+        return [$player1, $player2];
+    }
+
+    /**
+     * Erstellt ein Test-Spiel mit 2 Spielern und einem vollen Deck für die Game-Manager-Demo
+     * * @return array<int, Player>
      */
     public static function create_test_game(): array
     {
-        // Ein großes Deck erstellen
-        $master_deck = self::create_random_deck(40);
-        $master_deck->shuffle();
+        $full_deck = self::create_random_deck(Deck::MAX_SIZE * 2);
+        $full_deck->shuffle();
 
-        // In zwei Decks aufteilen
-        [$deck1, $deck2] = self::split_deck($master_deck);
+        [$deck1, $deck2] = self::split_deck($full_deck);
 
-        // Spieler erstellen
-        $player1 = new Player('player1', 'unnamed1', $deck1);
-        $player2 = new Player('player2', 'Aalmann', $deck2);
+        $player1 = new Player(
+            id: 'P1-' . uniqid(),
+            name: 'Panda',
+            deck: $deck1
+        );
+        $player2 = new Player(
+            id: 'P2-' . uniqid(),
+            name: 'Tiger',
+            deck: $deck2
+        );
 
         return [$player1, $player2];
     }

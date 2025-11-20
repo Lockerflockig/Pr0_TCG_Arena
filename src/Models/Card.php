@@ -68,9 +68,6 @@ readonly class Card
         ];
     }
 
-    /**
-     * Returns the trait with the highest value for this card
-     */
     public function get_best_trait(): Traits
     {
         $trait = Traits::REP;
