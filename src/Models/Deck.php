@@ -4,8 +4,7 @@ namespace App\Models;
 class Deck
 {
     private array $cards = [];
-    public const int MAX_SIZE = 20;
-
+    public const MAX_SIZE = 20;
     public function __construct(array $cards = [])
     {
         $this->cards = $cards;

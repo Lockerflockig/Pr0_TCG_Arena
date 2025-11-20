@@ -5,7 +5,7 @@ namespace App\Models;
 class Hand
 {
     private array $hand = [];
-    private const int MAX_SIZE = 5;
+    private const MAX_SIZE = 5;
     private Deck $deck;
     private Card $strongest_card;
     private Player $owner;
@@ -16,19 +16,23 @@ class Hand
     }
     public function draw_hand(): void
     {
-        for ($i = 1; $i < self::MAX_SIZE; $i++)
+        $this->hand = [];
+        for ($i = 0; $i < self::MAX_SIZE ; $i++)
         {
             $this->hand[] = $this->deck->draw_card();
+            echo "drawing card $i ";
         }
     }
     public function get_strongest_trait(): Traits
     {
+        //var_dump($this->hand);
         $this->strongest_card = $this->hand[0];
         $current_highest_val = $this->strongest_card->get_val($this->strongest_card->get_best_trait());
         $hand_size = count($this->hand);
         for ($i = 1; $i < $hand_size; $i++)
         {
             $next_card = $this->hand[$i];
+            echo "DEBUG " . $next_card->get_best_trait()->name . " itr = $i "; // <<< RICHTIG
             $next_cards_highest_val = $next_card->get_val($next_card->get_best_trait());
 
             if ($current_highest_val < $next_cards_highest_val) {
@@ -43,7 +47,7 @@ class Hand
     {
         $current_strongest_Card = $hand->hand[0];
         $current_strongest_val = $current_strongest_Card->get_val($trait);
-        $hand_size = count($this->hand);
+        $hand_size = count($hand->hand);
         for ($i = 1; $i < $hand_size; $i++)
         {
             $next_card = $this->hand[$i];

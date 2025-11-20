@@ -77,7 +77,7 @@ readonly class Card
             $max_val = $this->dip;
         }
         if ($max_val < $this->agg) {
-            $trait = Traits::DIP;
+            $trait = Traits::AGG;
             $max_val = $this->agg;
         }
         if ($max_val < $this->end) {
@@ -91,7 +91,11 @@ readonly class Card
         if ($max_val < $this->act) {
             $trait = Traits::ACT;
         }
-
+        echo "debug $trait->name";
         return $trait;
+    }
+    public function __toString(): string
+    {
+        return $this->name;
     }
 }

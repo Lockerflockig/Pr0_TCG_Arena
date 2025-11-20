@@ -11,7 +11,7 @@ class Deck_factory
     /**
      * Erstellt ein Test-Deck mit zufälligen Karten
      */
-    public static function create_random_deck(int $size = 10): Deck
+    public static function create_random_deck(int $size = 20): Deck
     {
         $cards = [];
         for ($i = 0; $i < $size; $i++) {
