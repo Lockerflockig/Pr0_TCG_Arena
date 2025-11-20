@@ -12,6 +12,7 @@ readonly class Card
     private int $end;
     private int $tac;
     private int $act;
+
     public function __construct(
         string $name,
         int    $id,
@@ -32,6 +33,7 @@ readonly class Card
         $this->tac = $tac;
         $this->act = $act;
     }
+
     public function get_val(Traits $trait): int
     {
         return match ($trait) {
@@ -43,14 +45,17 @@ readonly class Card
             Traits::ACT => $this->act,
         };
     }
+
     public function get_name(): string
     {
         return $this->name;
     }
+
     public function get_id(): int
     {
         return $this->id;
     }
+
     public function get_all_values(): array
     {
         return [
@@ -61,5 +66,35 @@ readonly class Card
             'tac' => $this->tac,
             'act' => $this->act,
         ];
+    }
+
+    /**
+     * Returns the trait with the highest value for this card
+     */
+    public function get_best_trait(): Traits
+    {
+        $trait = Traits::REP;
+        $max_val = $this->rep;
+        if ($max_val < $this->dip) {
+            $trait = Traits::DIP;
+            $max_val = $this->dip;
+        }
+        if ($max_val < $this->agg) {
+            $trait = Traits::DIP;
+            $max_val = $this->agg;
+        }
+        if ($max_val < $this->end) {
+            $trait = Traits::END;
+            $max_val = $this->end;
+        }
+        if ($max_val < $this->tac) {
+            $trait = Traits::TAC;
+            $max_val = $this->tac;
+        }
+        if ($max_val < $this->act) {
+            $trait = Traits::ACT;
+        }
+
+        return $trait;
     }
 }
