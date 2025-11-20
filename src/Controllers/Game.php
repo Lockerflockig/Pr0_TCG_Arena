@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Card;
 use App\Models\Player;
-use App\Models\Traits\Traits;
+use App\Models\Traits;
 use Exception;
 
 class Game
@@ -80,11 +80,13 @@ class Game
 
         $this->round_count++;
 
+        /*
         // Rundenlimit erreicht
         if ($this->round_count >= self::MAX_ROUNDS) {
             $this->end_game_by_timeout();
             return;
         }
+        */
 
         // Karten zum Pot hinzufügen (inklusive evtl. Gleichstand-Karten)
         $this->draw_pile[] = $card1;

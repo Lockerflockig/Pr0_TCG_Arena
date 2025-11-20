@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\Player;
-use Exception;
 
 class Game_manager
 {

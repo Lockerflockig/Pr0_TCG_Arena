@@ -2,9 +2,8 @@
 
 namespace App;
 
-use App\Controllers\Game;
 use App\Controllers\Game_manager;
-use App\Models\Traits\Traits;
+use App\Models\Traits;
 use App\Utils\Deck_factory;
 
 class Game_demo

@@ -11,7 +11,7 @@ class Deck_factory
     /**
      * Erstellt ein Test-Deck mit zufälligen Karten
      */
-    public static function create_random_deck(int $size = 15): Deck
+    public static function create_random_deck(int $size = 10): Deck
     {
         $cards = [];
         for ($i = 0; $i < $size; $i++) {
@@ -49,31 +49,6 @@ class Deck_factory
             act: random_int(60, 99)
         );
     }
-
-    /**
-     * Erstellt ein balanciertes Deck (gleiche Kartenstärke)
-     */
-    public static function create_balanced_deck(int $size = 20): Deck
-    {
-        $cards = [];
-        $avg_power = 5;
-
-        for ($i = 0; $i < $size; $i++) {
-            $cards[] = new Card(
-                name: "Balanced Card #$i",
-                id: $i,
-                rep: $avg_power + random_int(-2, 2),
-                dip: $avg_power + random_int(-2, 2),
-                agg: $avg_power + random_int(-2, 2),
-                end: $avg_power + random_int(-2, 2),
-                tac: $avg_power + random_int(-2, 2),
-                act: $avg_power + random_int(-2, 2)
-            );
-        }
-
-        return new Deck($cards);
-    }
-
     /**
      * Teilt ein Deck in zwei gleiche Hälften
      */
