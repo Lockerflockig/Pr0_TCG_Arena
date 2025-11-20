@@ -1,13 +1,11 @@
 <?php
 
 namespace App\Models;
-use App\Models\Traits\Traits;
 
 readonly class Card
 {
-    public Player $card_holder;
-    private string $name;
-    private int $id;
+    public string $name;
+    public int $id;
     private int $rep;
     private int $dip;
     private int $agg;
@@ -15,9 +13,16 @@ readonly class Card
     private int $tac;
     private int $act;
     public function __construct(
-        Player $card_holder, string $name,int $id, int $rep, int $dip, int $agg, int $end, int $tac, int $act)
+        string $name,
+        int    $id,
+        int    $rep,
+        int    $dip,
+        int    $agg,
+        int    $end,
+        int    $tac,
+        int    $act
+    )
     {
-        $this->card_holder = $card_holder;
         $this->name = $name;
         $this->id = $id;
         $this->rep = $rep;
@@ -45,5 +50,16 @@ readonly class Card
     public function get_id(): int
     {
         return $this->id;
+    }
+    public function get_all_values(): array
+    {
+        return [
+            'rep' => $this->rep,
+            'dip' => $this->dip,
+            'agg' => $this->agg,
+            'end' => $this->end,
+            'tac' => $this->tac,
+            'act' => $this->act,
+        ];
     }
 }
